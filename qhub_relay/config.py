@@ -8,7 +8,7 @@ import threading
 
 from .device import NUM_CHANNELS
 
-DEFAULT_DEVICE_IP = "192.168.1.210"
+DEFAULT_DEVICE_IP = "172.30.0.59"
 DEFAULT_DEVICE_PORT = 23
 DEFAULT_CHANNEL_NAMES = [f"Channel {i + 1}" for i in range(NUM_CHANNELS)]
 DEFAULT_PULSE_SECONDS = 1.0
