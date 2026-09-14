@@ -19,7 +19,8 @@ from qhub_relay.logbook import Logbook
 from qhub_relay.manager import Manager
 from qhub_relay.server import run_server
 
-HOST = "127.0.0.1"
+BIND_HOST = "0.0.0.0"   # listen on all interfaces
+LOCAL_HOST = "127.0.0.1"  # used for browser URL and the already-running probe
 PORT = 8420
 
 
@@ -38,7 +39,7 @@ def _already_running(url):
 
 
 def main():
-    url = f"http://{HOST}:{PORT}/"
+    url = f"http://{LOCAL_HOST}:{PORT}/"
     if _already_running(url):
         print("Q-Hub Relay Control is already running -- opening your browser to it.")
         webbrowser.open(url)
@@ -49,7 +50,7 @@ def main():
     manager = Manager(config, logbook)
     manager.start()
 
-    httpd = run_server(manager, host=HOST, port=PORT)
+    httpd = run_server(manager, host=BIND_HOST, port=PORT)
 
     print("Q-Hub Relay Control")
     print(f"  Device:  {config.device_ip}:{config.device_port}")
